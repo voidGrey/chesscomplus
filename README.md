@@ -47,11 +47,22 @@ English · Türkçe · 日本語 · 中文（简体）· Русский · Deuts
 
 ## 🚀 Installation
 
-1. Download or clone this repository
+### Option 1 — From a Release (recommended)
+
+1. Go to the **[Releases](../../releases)** page and download the latest `chess-plus-vX.X.X.crx`
 2. Open `chrome://extensions` (or `edge://extensions`, `brave://extensions`)
 3. Enable **Developer mode** (top right)
-4. Click **Load unpacked** and select the extension folder
+4. Drag the downloaded `.crx` file onto the extensions page and confirm the installation
 5. Pin **Chess.com+** to your toolbar and open any `chess.com` page
+
+> Chrome may show a warning for extensions installed this way — that is normal for releases not published on the Chrome Web Store. If your browser refuses to install the `.crx`, use Option 2 below.
+
+### Option 2 — From Source (unpacked)
+
+1. Clone or download this repository
+2. Open `chrome://extensions` and enable **Developer mode**
+3. Click **Load unpacked** and select the repository folder
+4. Pin **Chess.com+** to your toolbar and open any `chess.com` page
 
 > After reloading the extension, if clicking the icon does nothing, toggle the extension off/on on the extensions page — a known unpacked-reload quirk.
 
