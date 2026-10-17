@@ -1,5 +1,7 @@
 # Chess.com+
 
+> **Disclaimer:** Chess.com+ is an unofficial, community-made browser extension. It is not affiliated with, endorsed by, or sponsored by Chess.com.
+
 **Customize Chess.com your way - board themes, privacy tools and a one-click Streamer Mode.**
 
 A Manifest V3 browser extension that lets you restyle Chess.com and stay private while playing or streaming.
