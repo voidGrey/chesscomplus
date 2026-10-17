@@ -1,0 +1,52 @@
+/* Chess.com sayfalarına manifest üzerinden eklenir.
+   Renkler content.js tarafından html elemanına CSS değişkeni olarak yazılır. */
+
+html[data-cplus-bg] body {
+  background: var(--cplus-bg) !important;
+}
+
+html[data-cplus-board] .board {
+  background:
+    conic-gradient(
+      var(--cplus-dark) 25%, var(--cplus-light) 0 50%,
+      var(--cplus-dark) 0 75%, var(--cplus-light) 0
+    ) 0 0 / 25% 25% repeat !important;
+}
+
+/* Buton rengi: Chess.com'un birincil buton değişkenleri yeniden tanımlanır.
+   Parlaklık, gölge ve yazı tonları (--cplus-button-hi / -hi2 / -lo / -text)
+   content.js tarafından seçilen rengin parlaklığına göre HSL ile türetilir.
+   Böylece koyu renklerde siyah gölge kaybolmaz, açık renklerde yazı okunur. */
+html[data-cplus-button] .cc-bg-primary {
+  --cc-bg-color: linear-gradient(180deg,
+    var(--cplus-button-hi) 0%,
+    var(--cplus-button) 100%);
+  --cc-bg-color-hover: linear-gradient(180deg,
+      color-mix(in srgb, var(--cplus-button-hi2), transparent 50%) 0%,
+      transparent 100%),
+    linear-gradient(180deg,
+      var(--cplus-button-hi) 0%,
+      var(--cplus-button) 100%);
+  --cc-bg-box-shadow: inset 0 .1rem 0 0 var(--cplus-button-hi2),
+    inset 0 -.1rem 0 0 var(--cplus-button-lo),
+    inset 0 .2rem .4rem 0
+      color-mix(in srgb, var(--cplus-button-hi2), transparent 55%),
+    inset 0 -.2rem .4rem 0
+      color-mix(in srgb, var(--cplus-button-lo), transparent 50%),
+    0 .1rem .2rem 0 var(--color-transparent-black-14),
+    0 .2rem .4rem 0 var(--color-transparent-black-10);
+  --cc-bg-box-shadow-hover: inset 0 .1rem 0 0 var(--cplus-button-hi2),
+    inset 0 .2rem .4rem 0
+      color-mix(in srgb, var(--cplus-button-hi2), transparent 55%),
+    inset 0 -.1rem 0 0 var(--cplus-button-lo),
+    inset 0 -.2rem .4rem 0
+      color-mix(in srgb, var(--cplus-button-lo), transparent 50%),
+    0 .1rem .2rem 0 var(--color-transparent-black-14),
+    0 .2rem .4rem 0 var(--color-transparent-black-10);
+  color: var(--cplus-button-text);
+}
+
+/* Gizleme sınıfları: Extra Settings'teki anahtarlar tarafından kullanılır.
+   -hidden-name yer tutar (düzen bozulmaz), -hidden tamamen kaldırır. */
+.cplus-hidden-name { visibility: hidden !important; }
+.cplus-hidden { display: none !important; }

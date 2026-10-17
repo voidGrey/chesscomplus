@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chess.com+</title>
+  <link rel="stylesheet" href="popup.css">
+<base target="_blank">
+</head>
+<body>
+  <main>
+    <header>
+      <img src="logo.png" alt="">
+      <div>
+        <h1>Chess.com+</h1>
+        <p data-i18n="extra.subtitle">Privacy and streaming settings</p>
+      </div>
+      <select class="lang-select" id="langSelect"></select>
+    </header>
+
+    <div class="subtabs" role="tablist" data-i18n-aria-label="extra.subtabsAria" aria-label="Extra settings">
+      <button class="subtab is-active" type="button" role="tab" data-panel="privacyPanel" data-i18n="extra.tabHiding">Hiding</button>
+      <button class="subtab" type="button" role="tab" data-panel="pseudoPanel" data-i18n="extra.tabMasking">Masking</button>
+    </div>
+
+    <section class="panel" id="privacyPanel" role="tabpanel">
+      <section class="field">
+        <h2 class="field-label" data-i18n="extra.opponent">Opponent</h2>
+        <ul class="settings">
+          <li class="setting setting-toggle">
+            <label class="setting-main" for="hideOppName">
+              <span class="setting-name" data-i18n="extra.maskOppName">Mask username</span>
+              <span class="switch">
+                <input type="checkbox" id="hideOppName">
+                <span class="slider"></span>
+              </span>
+            </label>
+          </li>
+          <li class="setting setting-toggle">
+            <label class="setting-main" for="hideOppRating">
+              <span class="setting-name" data-i18n="extra.hideOppRating">Hide rating</span>
+              <span class="switch">
+                <input type="checkbox" id="hideOppRating">
+                <span class="slider"></span>
+              </span>
+            </label>
+          </li>
+          <li class="setting setting-toggle">
+            <label class="setting-main" for="hideOppFlag">
+              <span class="setting-name" data-i18n="extra.hideOppFlag">Hide country flag</span>
+              <span class="switch">
+                <input type="checkbox" id="hideOppFlag">
+                <span class="slider"></span>
+              </span>
+            </label>
+          </li>
+          <li class="setting setting-toggle">
+            <label class="setting-main" for="hideOppAvatar">
+              <span class="setting-name" data-i18n="extra.maskOppAvatar">Mask avatar</span>
+              <span class="switch">
+                <input type="checkbox" id="hideOppAvatar">
+                <span class="slider"></span>
+              </span>
+            </label>
+          </li>
+        </ul>
+      </section>
+
+      <section class="field">
+        <h2 class="field-label" data-i18n="extra.self">Kendim</h2>
+        <ul class="settings">
+          <li class="setting setting-toggle">
+            <label class="setting-main" for="hideSelfRating">
+              <span class="setting-name" data-i18n="extra.hideSelfRating">Hide my rating</span>
+              <span class="switch">
+                <input type="checkbox" id="hideSelfRating">
+                <span class="slider"></span>
+              </span>
+            </label>
+          </li>
+        </ul>
+      </section>
+
+      <section class="field">
+        <h2 class="field-label" data-i18n="extra.streamerMode">Streamer Mode</h2>
+        <div class="streamer-card">
+          <div>
+            <strong data-i18n="extra.streamerMode">Streamer Mode</strong>
+            <p data-i18n="extra.streamerDesc">Masks your username, flag and avatar all at once.</p>
+          </div>
+          <label class="switch switch-lg" for="streamer">
+            <input type="checkbox" id="streamer">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel" id="pseudoPanel" role="tabpanel" hidden>
+      <section class="field">
+        <h2 class="field-label" data-i18n="extra.fakeNamesLabel">Fake names for opponent</h2>
+        <input class="mask-input" type="text" id="pseudoNames" spellcheck="false"
+               data-i18n-placeholder="extra.fakeNamesPlaceholder" placeholder="E.g. HiddenFoe, AnonPlayer, ???">
+        <p class="mask-hint" data-i18n="extra.fakeNamesHint">Separate with commas. If left empty, ###SecretUser### is used. The same opponent keeps the same fake name for the session.</p>
+      </section>
+
+      <section class="field">
+        <h2 class="field-label" data-i18n="extra.avatarUrlsLabel">Avatar URLs for opponent</h2>
+        <textarea class="mask-input" id="avatarUrls" rows="2" spellcheck="false"
+                  placeholder="https://example.com/avatar1.png&#10;https://example.com/avatar2.png"></textarea>
+        <p class="mask-hint" data-i18n="extra.avatarUrlsHint">One URL per line. If left empty, the bundled HiddenAvatar.png is used (you can replace the file with your own image).</p>
+      </section>
+
+      <section class="field">
+        <h2 class="field-label" data-i18n="extra.selfNameLabel">Your stream name</h2>
+        <input class="mask-input" type="text" id="selfName" spellcheck="false"
+               data-i18n-placeholder="extra.selfNamePlaceholder" placeholder="E.g. MysticPlayer">
+        <p class="mask-hint" data-i18n="extra.selfNameHint">Shown instead of your username while Streamer Mode is on. If left empty, the opponent list is used.</p>
+      </section>
+
+      <section class="field">
+        <h2 class="field-label" data-i18n="extra.selfAvatarLabel">Your stream avatar</h2>
+        <input class="mask-input" type="text" id="selfAvatarUrl" spellcheck="false"
+               data-i18n-placeholder="extra.selfAvatarPlaceholder" placeholder="https://example.com/my-avatar.png">
+        <p class="mask-hint" data-i18n="extra.selfAvatarHint">Shown instead of your avatar while Streamer Mode is on. If left empty, the opponent avatar setting is used.</p>
+      </section>
+    </section>
+  </main>
+
+  <nav class="tabs" id="tabs" data-i18n-aria-label="tabs.aria" aria-label="Pages"></nav>
+
+  <script src="shared.js"></script>
+  <script src="locales/en.js"></script>
+  <script src="locales/de.js"></script>
+  <script src="locales/ja.js"></script>
+  <script src="locales/ru.js"></script>
+  <script src="locales/tr.js"></script>
+  <script src="locales/zh.js"></script>
+  <script src="i18n.js"></script>
+  <script src="tabs.js"></script>
+  <script src="extra.js"></script>
+</body>
+</html>

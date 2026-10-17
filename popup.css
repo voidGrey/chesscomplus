@@ -1,0 +1,634 @@
+:root {
+  /* Popup boyutu: sabit tutulur. Chrome eklenti popuplarını ~600px ile
+     sınırlar; daha büyük değer kırpılır ve belge kaydırması oluşur. */
+  --popup-height: 600px;
+
+  /* Logo paleti */
+  --ink: #202221;
+  --surface: #2a2c2b;
+  --surface-hover: #323534;
+  --text: #e8ebe6;
+  --muted: #8d948b;
+  --green: #81b64c;
+  --green-light: #a3d160;
+
+  /* Önizleme renkleri: popup.js günceller */
+  --pv-bg: #1e1e1e;
+  --pv-light: #ebecd0;
+  --pv-dark: #739552;
+  --pv-button: #81b64c;
+  --pv-button-hi: #a3d160;
+  --pv-button-hi2: #c8e79b;
+  --pv-button-lo: #5d9948;
+  --pv-button-text: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+/* Belge düzeyinde taşma olursa bile görünür scrollbar çıkmasın */
+html { scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+
+body {
+  width: 320px;
+  height: var(--popup-height); /* sabit boyut: sekme değişimlerinde zıplama olmaz */
+  display: flex;
+  flex-direction: column;
+  background: var(--ink);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+main {
+  flex: 1;
+  min-height: 0; /* sabit yükseklikte taşma durumunda doğru küçülme için */
+  padding: 20px;
+  overflow-y: auto; /* taşan içerik pencereyi büyütmez, kaydırılır */
+  overscroll-behavior: contain; /* kaydırma dışarı sızmasın */
+  scrollbar-width: none; /* Firefox: çubuk gizli */
+}
+
+/* Chrome/Safari/Edge: çubuk gizli, tekerlek ile kaydırma çalışmaya devam eder */
+main::-webkit-scrollbar { display: none; }
+
+/* Alt sekmeler */
+.tabs {
+  display: flex;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--ink);
+}
+
+.tabs a {
+  flex: auto;
+  padding: 14px 8px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.12s ease;
+}
+
+.tabs a:hover { color: var(--text); }
+
+.tabs a[aria-current="page"] {
+  color: var(--text);
+  box-shadow: inset 0 2px 0 var(--green);
+}
+
+.tabs a:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+}
+
+
+/* Dil seçici: tüm sayfaların başlığında (bayraklı açılır liste) */
+/* Yedek: JS select'i açılır listeyle değiştirene kadar (veya JS çalışmazsa)
+   ham select de aynı görünümü tutsun */
+.lang-select {
+  margin-left: auto;
+  flex: none;
+  min-width: 44px;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.lang-dropdown {
+  position: relative;
+  margin-left: auto;
+  flex: none;
+}
+
+.lang-dropdown-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lang-dropdown-button:hover { background: var(--surface-hover); }
+
+.lang-dropdown-button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+}
+
+.lang-dropdown-button img {
+  display: block;
+  width: 22px;
+  height: auto;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.lang-dropdown-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 10;
+  min-width: 150px;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.lang-dropdown-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.lang-dropdown-option:hover { background: var(--surface-hover); }
+
+.lang-dropdown-option.is-active { box-shadow: inset 0 0 0 2px var(--green); }
+
+.lang-dropdown-option img {
+  width: 22px;
+  height: auto;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Başlık */
+header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+header img {
+  width: 44px;
+  height: 44px;
+  flex: none;
+}
+
+h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+header p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Önizleme */
+.preview {
+  padding: 14px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: var(--pv-bg);
+  transition: background-color 0.15s ease;
+}
+
+.preview-board {
+  height: 80px;
+  border-radius: 6px;
+  /* 4x2 kare: sol altta koyu kare, Chess.com yönüyle aynı */
+  background:
+    conic-gradient(
+      var(--pv-dark) 25%, var(--pv-light) 0 50%,
+      var(--pv-dark) 0 75%, var(--pv-light) 0
+    ) 0 0 / 80px 80px;
+}
+
+
+/* Buton önizlemesi: Chess.com birincil buton görünümü, rengi popup.js günceller */
+.preview-button {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--pv-button-text);
+  background: linear-gradient(180deg,
+    var(--pv-button-hi) 0%,
+    var(--pv-button) 100%);
+  box-shadow: inset 0 .1rem 0 0 var(--pv-button-hi2),
+    inset 0 -.1rem 0 0 var(--pv-button-lo),
+    0 .1rem .2rem 0 rgba(0, 0, 0, 0.14);
+}
+
+/* Ayarlar */
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.setting {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 8px;
+  border-radius: 10px;
+  background: var(--surface);
+  transition: background-color 0.12s ease;
+}
+
+/* Satırın tıklanabilir kısmı: ad, hex ve renk seçici */
+.setting-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0 10px 14px;
+  cursor: pointer;
+}
+
+.setting:hover { background: var(--surface-hover); }
+
+.setting:focus-within {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.setting-name { font-weight: 500; }
+
+/* Sıfırlama düğmesi: renk değiştirilmediyse görünmez ama yer tutar */
+.reset {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.12s ease, visibility 0.12s ease,
+              color 0.12s ease, background-color 0.12s ease;
+}
+
+.reset.is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.reset:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.reset:focus-visible {
+  outline: 2px solid var(--green);
+}
+
+.reset svg {
+  width: 16px;
+  height: 16px;
+}
+
+.setting-value {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hex {
+  min-width: 58px;
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* Renk seçici: tarayıcının varsayılan görünümünü kaldır */
+input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+
+/* Extra Settings: anahtar (switch) düğmeleri */
+.switch {
+  position: relative;
+  flex: none;
+  width: 40px;
+  height: 22px;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch .slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--surface-hover);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.switch .slider::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text);
+  transition: transform 0.15s ease;
+}
+
+.switch input:checked + .slider { background: var(--green); }
+
+.switch input:checked + .slider::before { transform: translateX(18px); }
+
+.switch input:focus-visible + .slider {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* Büyük anahtar: Streamer Mod */
+.switch-lg { width: 52px; height: 28px; }
+
+.switch-lg .slider::before {
+  width: 22px;
+  height: 22px;
+}
+
+.switch-lg input:checked + .slider::before { transform: translateX(24px); }
+
+/* Anahtarlı ayar satırı: tüm satır tıklanabilir */
+.setting-toggle .setting-main { cursor: pointer; }
+
+/* Streamer Mod kartı */
+.streamer-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.streamer-card strong { font-size: 14px; }
+
+.streamer-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Extra Settings: alt sekmeler (Gizleme / Maskeleme) */
+.subtabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.subtab {
+  flex: 1;
+  padding: 8px 4px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.12s ease, background-color 0.12s ease;
+}
+
+.subtab:hover { color: var(--text); }
+
+.subtab.is-active {
+  background: var(--surface-hover);
+  color: var(--text);
+  box-shadow: inset 0 -2px 0 var(--green);
+}
+
+.subtab:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+}
+
+/* Extra: maskeleme liste girişleri */
+.mask-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  resize: vertical;
+}
+
+.mask-input:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+}
+
+.mask-hint {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.mask-hint code {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--surface);
+  font-size: 10px;
+}
+
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.empty h1 { font-size: 16px; }
+
+.empty p {
+  max-width: 220px;
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+/* Themes: açılır listeler */
+.field + .field { margin-top: 12px; }
+
+.field-label {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.dropdown-button:hover { background: var(--surface-hover); }
+
+.dropdown-button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.dropdown-preview {
+  display: flex;
+  flex: none;
+}
+
+.dropdown-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.dropdown-chevron {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: var(--muted);
+  transition: transform 0.15s ease;
+}
+
+.dropdown.is-open .dropdown-chevron { transform: rotate(180deg); }
+
+.dropdown-list {
+  max-height: 216px;
+  margin: 6px 0 0;
+  padding: 4px;
+  overflow-y: auto;
+  border-radius: 10px;
+  background: var(--surface);
+  list-style: none;
+}
+
+.dropdown-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dropdown-option:hover { background: var(--surface-hover); }
+
+.dropdown-option:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-option[aria-selected="true"] {
+  box-shadow: inset 0 0 0 2px var(--green);
+}
+
+/* Tahta önizlemesi: 4x2 kare, Advanced sayfadaki önizlemeyle aynı yön */
+.board-swatch {
+  width: 64px;
+  height: 32px;
+  flex: none;
+  border-radius: 4px;
+  background:
+    conic-gradient(
+      var(--sw-dark) 25%, var(--sw-light) 0 50%,
+      var(--sw-dark) 0 75%, var(--sw-light) 0
+    ) 0 0 / 32px 32px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+/* Arka plan önizlemesi: tek kare */
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 6px;
+  background: var(--sw-color);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chess.com+</title>
+  <link rel="stylesheet" href="popup.css">
+<base target="_blank">
+</head>
+<body>
+  <main>
+    <header>
+      <img src="logo.png" alt="">
+      <div>
+        <h1>Chess.com+</h1>
+        <p data-i18n="themes.subtitle">Ready-made board and background colors</p>
+      </div>
+      <select class="lang-select" id="langSelect"></select>
+    </header>
+
+    <section class="field">
+      <h2 class="field-label" id="themeLabel" data-i18n="themes.boardTheme">Board theme</h2>
+      <div class="dropdown" id="themeDropdown">
+        <button class="dropdown-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="themeLabel themeName">
+          <span class="dropdown-preview"></span>
+          <span class="dropdown-name" id="themeName"></span>
+          <svg class="dropdown-chevron lucide lucide-chevron-down" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <ul class="dropdown-list" role="listbox" aria-labelledby="themeLabel" hidden></ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <h2 class="field-label" id="backgroundLabel" data-i18n="themes.siteBackground">Site background</h2>
+      <div class="dropdown" id="backgroundDropdown">
+        <button class="dropdown-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="backgroundLabel backgroundName">
+          <span class="dropdown-preview"></span>
+          <span class="dropdown-name" id="backgroundName"></span>
+          <svg class="dropdown-chevron lucide lucide-chevron-down" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <ul class="dropdown-list" role="listbox" aria-labelledby="backgroundLabel" hidden></ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <h2 class="field-label" id="buttonLabel" data-i18n="themes.buttonColor">Button color</h2>
+      <div class="dropdown" id="buttonDropdown">
+        <button class="dropdown-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="buttonLabel buttonName">
+          <span class="dropdown-preview"></span>
+          <span class="dropdown-name" id="buttonName"></span>
+          <svg class="dropdown-chevron lucide lucide-chevron-down" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <ul class="dropdown-list" role="listbox" aria-labelledby="buttonLabel" hidden></ul>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabs" id="tabs" data-i18n-aria-label="tabs.aria" aria-label="Pages"></nav>
+
+    <script src="shared.js"></script>
+  <script src="locales/en.js"></script>
+  <script src="locales/de.js"></script>
+  <script src="locales/ja.js"></script>
+  <script src="locales/ru.js"></script>
+  <script src="locales/tr.js"></script>
+  <script src="locales/zh.js"></script>
+  <script src="i18n.js"></script>
+  <script src="tabs.js"></script>
+  <script src="themes-data.js"></script>
+  <script src="themes.js"></script>
+</body>
+</html>

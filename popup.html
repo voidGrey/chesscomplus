@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chess.com+</title>
+  <link rel="stylesheet" href="popup.css">
+<base target="_blank">
+</head>
+<body>
+  <main>
+    <header>
+      <img src="logo.png" alt="">
+      <div>
+        <h1>Chess.com+</h1>
+        <p data-i18n="popup.subtitle">Customize your chess board</p>
+      </div>
+      <select class="lang-select" id="langSelect"></select>
+    </header>
+
+    <div class="preview" id="preview" aria-hidden="true">
+      <div class="preview-board"></div>
+      <button class="preview-button" type="button" tabindex="-1" aria-hidden="true">Play</button>
+    </div>
+
+    <ul class="settings">
+      <li class="setting">
+        <label class="setting-main" for="bgColor">
+          <span class="setting-name" data-i18n="popup.siteBackground">Site background</span>
+          <span class="setting-value">
+            <output class="hex" id="bgHex" for="bgColor">#1e1e1e</output>
+            <input type="color" id="bgColor" value="#1e1e1e">
+          </span>
+        </label>
+        <button class="reset" type="button" id="bgReset" data-i18n-aria-label="popup.resetSiteBackground" title="Reset" aria-label="Reset site background">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+      </li>
+      <li class="setting">
+        <label class="setting-main" for="lightColor">
+          <span class="setting-name" data-i18n="popup.lightSquares">Light squares</span>
+          <span class="setting-value">
+            <output class="hex" id="lightHex" for="lightColor">#ebecd0</output>
+            <input type="color" id="lightColor" value="#ebecd0">
+          </span>
+        </label>
+        <button class="reset" type="button" id="lightReset" data-i18n-aria-label="popup.resetLightSquares" title="Reset" aria-label="Reset light square color">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+      </li>
+      <li class="setting">
+        <label class="setting-main" for="darkColor">
+          <span class="setting-name" data-i18n="popup.darkSquares">Dark squares</span>
+          <span class="setting-value">
+            <output class="hex" id="darkHex" for="darkColor">#739552</output>
+            <input type="color" id="darkColor" value="#739552">
+          </span>
+        </label>
+        <button class="reset" type="button" id="darkReset" data-i18n-aria-label="popup.resetDarkSquares" title="Reset" aria-label="Reset dark square color">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+      </li>
+      <li class="setting">
+        <label class="setting-main" for="buttonColor">
+          <span class="setting-name" data-i18n="popup.buttonColor">Button color</span>
+          <span class="setting-value">
+            <output class="hex" id="buttonHex" for="buttonColor">#81b64c</output>
+            <input type="color" id="buttonColor" value="#81b64c">
+          </span>
+        </label>
+        <button class="reset" type="button" id="buttonReset" data-i18n-aria-label="popup.resetButtonColor" title="Reset" aria-label="Reset button color">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+      </li>
+    </ul>
+  </main>
+
+  <nav class="tabs" id="tabs" data-i18n-aria-label="tabs.aria" aria-label="Pages"></nav>
+
+    <script src="shared.js"></script>
+  <script src="locales/en.js"></script>
+  <script src="locales/de.js"></script>
+  <script src="locales/ja.js"></script>
+  <script src="locales/ru.js"></script>
+  <script src="locales/tr.js"></script>
+  <script src="locales/zh.js"></script>
+  <script src="i18n.js"></script>
+  <script src="tabs.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
