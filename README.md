@@ -4,7 +4,9 @@
 
 A Manifest V3 browser extension that lets you restyle Chess.com and stay private while playing or streaming.
 
-`🤖 vibe-coded` · Built end-to-end with AI pair-programming (Kimi) — ideas, code, 6-language i18n and all.
+`🤖 vibe-coded` · Built end-to-end with AI pair-programming — ideas, code, 6-language i18n and all.
+
+> **Disclaimer:** Chess.com+ is an unofficial, community-made browser extension. It is not affiliated with, endorsed by, or sponsored by Chess.com.
 
 ![On Chess.com](images/screen_shot_1.png)
 
