@@ -28,6 +28,9 @@
     "popup.resetLightSquares": "Açık kare rengini sıfırla",
     "popup.resetDarkSquares": "Koyu kare rengini sıfırla",
     "popup.resetButtonColor": "Buton rengini sıfırla",
+    "popup.saveTheme": "Temayı Kaydet",
+    "popup.themeNamePlaceholder": "Tema adı...",
+    "popup.themeExists": 'Bu renkleri kullanan bir tema zaten var: "{name}"',
 
     // Themes
     "themes.subtitle": "Hazır tahta ve arka plan renkleri",
@@ -35,6 +38,7 @@
     "themes.siteBackground": "Site arka planı",
     "themes.buttonColor": "Buton rengi",
     "themes.custom": "Özel",
+    "themes.customThemes": "Özel Temalar",
     "themes.board.default": "Varsayılan",
     "themes.board.darkBlue": "Koyu Mavi +",
     "themes.board.wood": "Ahşap",
@@ -55,7 +59,7 @@
 
     // Extra Settings
     "extra.subtitle": "Gizlilik ve yayın ayarları",
-    "extra.tabHiding": "Gizlilik",
+    "extra.tabHiding": "Gizleme",
     "extra.tabMasking": "Maskeleme",
     "extra.subtabsAria": "Ek ayarlar",
     "extra.opponent": "Rakip",
@@ -77,5 +81,4 @@
     "extra.selfAvatarLabel": "Yayın avatarınız",
     "extra.selfAvatarHint": "Streamer Mod açıkken sizin avatarınızın yerine gösterilir. Boş bırakılırsa rakip için geçerli avatar ayarı kullanılır.",
     "extra.selfAvatarPlaceholder": "https://ornek.com/avatarim.png",
-    "extra.self": "Kendim"
 };

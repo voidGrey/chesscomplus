@@ -104,6 +104,52 @@ async function saveColors(values) {
   }
 }
 
+// ---------- Custom themes ----------
+
+// Custom themes are stored as individual keys "customTheme.<timestamp>" so
+// each theme stays small and the sync item quota is never stressed.
+const CUSTOM_THEME_PREFIX = "customTheme.";
+
+// Saves a theme object { name, bg, light, dark, button }; returns its id
+async function saveCustomTheme(theme) {
+  const id = `${CUSTOM_THEME_PREFIX}${Date.now()}`;
+  try {
+    await chrome.storage.sync.set({ [id]: theme });
+    return id;
+  } catch (err) {
+    console.warn("Could not save theme:", err);
+    return null;
+  }
+}
+
+// Returns all saved custom themes, in creation order
+async function getCustomThemes() {
+  const all = await chrome.storage.sync.get(null);
+  return Object.entries(all)
+    .filter(([key]) => key.startsWith(CUSTOM_THEME_PREFIX))
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([id, theme]) => ({ id, ...theme }));
+}
+
+// Returns the saved custom theme with exactly these four colors, or null
+async function findCustomThemeByColors(colors) {
+  const themes = await getCustomThemes();
+  const keys = ["bg", "light", "dark", "button"];
+  return (
+    themes.find((theme) =>
+      keys.every((k) => (theme[k] || "").toLowerCase() === colors[k].toLowerCase())
+    ) || null
+  );
+}
+
+async function removeCustomTheme(id) {
+  try {
+    await chrome.storage.sync.remove(id);
+  } catch (err) {
+    console.warn("Could not delete theme:", err);
+  }
+}
+
 // ---------- Hide settings ----------
 
 // Stores a toggle/text value; an empty value (false, "") removes the entry

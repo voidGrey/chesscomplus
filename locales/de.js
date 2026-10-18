@@ -28,6 +28,9 @@
     "popup.resetLightSquares": "Farbe der hellen Felder zurücksetzen",
     "popup.resetDarkSquares": "Farbe der dunklen Felder zurücksetzen",
     "popup.resetButtonColor": "Button-Farbe zurücksetzen",
+    "popup.saveTheme": "Theme speichern",
+    "popup.themeNamePlaceholder": "Themenname...",
+    "popup.themeExists": 'Ein Theme mit diesen Farben existiert bereits: "{name}"',
 
     // Themes
     "themes.subtitle": "Fertige Brett- und Hintergrundfarben",
@@ -35,6 +38,7 @@
     "themes.siteBackground": "Site background",
     "themes.buttonColor": "Button color",
     "themes.custom": "Benutzerdefiniert",
+    "themes.customThemes": "Benutzerdefinierte Themes",
     "themes.board.default": "Standard",
     "themes.board.darkBlue": "Dunkelblau +",
     "themes.board.wood": "Holz",
@@ -55,7 +59,7 @@
 
     // Extra Settings
     "extra.subtitle": "Datenschutz- und Streaming-Einstellungen",
-    "extra.tabHiding": "Privatsphäre",
+    "extra.tabHiding": "Verbergen",
     "extra.tabMasking": "Maskierung",
     "extra.subtabsAria": "Zusätzliche Einstellungen",
     "extra.opponent": "Gegner",
@@ -77,5 +81,4 @@
     "extra.selfAvatarLabel": "Dein Stream-Avatar",
     "extra.selfAvatarHint": "Wird im Streamer-Modus statt deines Avatars angezeigt. Wenn leer, wird die Avatar-Einstellung des Gegners verwendet.",
     "extra.selfAvatarPlaceholder": "https://example.com/my-avatar.png",
-    "extra.self": "Ich"
 };

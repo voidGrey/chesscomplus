@@ -28,6 +28,9 @@
     "popup.resetLightSquares": "白いマスの色をリセット",
     "popup.resetDarkSquares": "黒いマスの色をリセット",
     "popup.resetButtonColor": "ボタンの色をリセット",
+    "popup.saveTheme": "テーマを保存",
+    "popup.themeNamePlaceholder": "テーマ名...",
+    "popup.themeExists": '同じ配色のテーマがすでに存在します: "{name}"',
 
     // Themes
     "themes.subtitle": "すぐ使えるボードと背景のカラーテーマ",
@@ -35,6 +38,7 @@
     "themes.siteBackground": "サイトの背景",
     "themes.buttonColor": "ボタンの色",
     "themes.custom": "カスタム",
+    "themes.customThemes": "カスタムテーマ",
     "themes.board.default": "デフォルト",
     "themes.board.darkBlue": "ダークブルー +",
     "themes.board.wood": "ウッド",
@@ -55,7 +59,7 @@
 
     // Extra Settings
     "extra.subtitle": "プライバシーと配信の設定",
-    "extra.tabHiding": "プライバシー",
+    "extra.tabHiding": "非表示",
     "extra.tabMasking": "マスキング",
     "extra.subtabsAria": "追加設定",
     "extra.opponent": "対戦相手",
@@ -77,5 +81,4 @@
     "extra.selfAvatarLabel": "配信用のアバター",
     "extra.selfAvatarHint": "ストリーマーモード有効時に、自分のアバターの代わりに表示されます。空欄の場合は相手用のアバター設定が使われます。",
     "extra.selfAvatarPlaceholder": "https://example.com/my-avatar.png",
-    "extra.self": "自分"
 };

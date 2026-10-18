@@ -68,6 +68,51 @@ async function init() {
       saveColors({ [field.key]: DEFAULTS[field.key] });
     });
   }
+
+  setupSaveTheme();
+}
+
+// Save Theme: stores the current color set under the entered name.
+// The button stays disabled until the name field is non-empty, and saving
+// is refused when a theme with identical colors already exists.
+function setupSaveTheme() {
+  const nameInput = document.getElementById("themeName");
+  const saveBtn = document.getElementById("saveTheme");
+  const warning = document.getElementById("saveThemeWarning");
+
+  const hideWarning = () => {
+    warning.hidden = true;
+  };
+
+  nameInput.addEventListener("input", () => {
+    saveBtn.disabled = nameInput.value.trim() === "";
+    hideWarning();
+  });
+
+  saveBtn.addEventListener("click", async () => {
+    const name = nameInput.value.trim();
+    if (!name) return;
+
+    const values = {};
+    for (const field of FIELDS) {
+      values[field.key] = document.getElementById(field.input).value;
+    }
+
+    // Block duplicates: same four colors under any name
+    const existing = await findCustomThemeByColors(values);
+    if (existing) {
+      warning.textContent = t("popup.themeExists").replace("{name}", existing.name);
+      warning.hidden = false;
+      return;
+    }
+
+    const id = await saveCustomTheme({ name, ...values });
+    if (id) {
+      nameInput.value = "";
+      saveBtn.disabled = true;
+      hideWarning();
+    }
+  });
 }
 
 init();

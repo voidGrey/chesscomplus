@@ -363,6 +363,66 @@ input[type="color"]::-moz-color-swatch {
 }
 
 
+/* Settings+: Save Theme satırı */
+.save-theme {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.save-theme .mask-input { flex: 1; min-width: 0; }
+
+.save-theme-button {
+  flex: none;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--green);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.12s ease, opacity 0.12s ease;
+}
+
+.save-theme-button:hover:not(:disabled) { background: var(--green-light); }
+
+.save-theme-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.save-theme-button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* Save Theme: aynı renklerle tema varsa çıkan uyarı */
+.save-theme-warning {
+  margin: 8px 0 0;
+  color: #e8912c;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* Themes: özel temalar satırı (dropdown + silme düğmesi) */
+.custom-themes-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.custom-themes-row .dropdown {
+  flex: 1;
+  min-width: 0;
+}
+
+.custom-themes-delete {
+  flex: none;
+  font-size: 16px;
+  line-height: 1;
+}
+
 /* Extra Settings: anahtar (switch) düğmeleri */
 .switch {
   position: relative;
@@ -427,7 +487,7 @@ input[type="color"]::-moz-color-swatch {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 10px;
+  padding: 14px;
   border-radius: 10px;
   background: var(--surface);
 }
@@ -632,3 +692,27 @@ input[type="color"]::-moz-color-swatch {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* ===== Compact layout ===== */
+/* Başlık: daha küçük logo ve boşluk */
+header { margin-bottom: 12px; }
+header img { width: 36px; height: 36px; }
+h1 { font-size: 16px; }
+header p { font-size: 11px; }
+
+/* Önizleme: daha kısa tahta ve sıkı iç boşluk */
+.preview { padding: 10px; margin-bottom: 12px; }
+.preview-board { height: 64px; background-size: 64px 64px; }
+.preview-button { margin-top: 8px; padding: 6px 12px; }
+
+/* Ayar satırları: ince satır yüksekliği + küçük renk seçici */
+.settings { gap: 6px; }
+.setting-main { padding: 8px 0 8px 12px; }
+input[type="color"] { width: 28px; height: 28px; }
+.reset { width: 26px; height: 26px; }
+.hex { min-width: 52px; }
+
+/* Save Theme satırı */
+.save-theme { margin-top: 10px; }
+.save-theme .mask-input { padding: 8px 10px; }
+.save-theme-button { padding: 0 12px; }

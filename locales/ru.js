@@ -28,6 +28,9 @@
     "popup.resetLightSquares": "Сбросить цвет светлых клеток",
     "popup.resetDarkSquares": "Сбросить цвет тёмных клеток",
     "popup.resetButtonColor": "Сбросить цвет кнопок",
+    "popup.saveTheme": "Сохранить тему",
+    "popup.themeNamePlaceholder": "Название темы...",
+    "popup.themeExists": 'Тема с такими же цветами уже существует: "{name}"',
 
     // Themes
     "themes.subtitle": "Готовые темы доски и фона",
@@ -35,6 +38,7 @@
     "themes.siteBackground": "Site background",
     "themes.buttonColor": "Button color",
     "themes.custom": "Своя",
+    "themes.customThemes": "Пользовательские темы",
     "themes.board.default": "По умолчанию",
     "themes.board.darkBlue": "Тёмно-синяя +",
     "themes.board.wood": "Дерево",
@@ -55,7 +59,7 @@
 
     // Extra Settings
     "extra.subtitle": "Настройки приватности и стрима",
-    "extra.tabHiding": "Конфиденциальность",
+    "extra.tabHiding": "Скрытие",
     "extra.tabMasking": "Маскировка",
     "extra.subtabsAria": "Доп. настройки",
     "extra.opponent": "Соперник",
@@ -77,5 +81,4 @@
     "extra.selfAvatarLabel": "Ваш аватар в стриме",
     "extra.selfAvatarHint": "Показывается вместо вашего аватара, когда включён режим стримера. Если пусто, используются настройки аватара соперника.",
     "extra.selfAvatarPlaceholder": "https://example.com/my-avatar.png",
-    "extra.self": "Я"
 };

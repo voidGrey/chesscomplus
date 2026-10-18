@@ -6,6 +6,7 @@
   <title>Chess.com+</title>
   <link rel="stylesheet" href="popup.css">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
   <main>
@@ -73,6 +74,13 @@
         </button>
       </li>
     </ul>
+
+    <div class="save-theme">
+      <input class="mask-input" type="text" id="themeName" maxlength="40" spellcheck="false"
+             data-i18n-placeholder="popup.themeNamePlaceholder" placeholder="Theme name...">
+      <button class="save-theme-button" type="button" id="saveTheme" data-i18n="popup.saveTheme" disabled>Save Theme</button>
+    </div>
+    <p class="save-theme-warning" id="saveThemeWarning" role="alert" hidden></p>
   </main>
 
   <nav class="tabs" id="tabs" data-i18n-aria-label="tabs.aria" aria-label="Pages"></nav>

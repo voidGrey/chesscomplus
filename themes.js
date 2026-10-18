@@ -146,6 +146,10 @@ function createDropdown({ root, items, renderPreview, onSelect }) {
       markSelected(index);
       show(index >= 0 ? items[index] : customItem);
     },
+    // Index of the currently selected option (-1 = custom/none)
+    getSelectedIndex() {
+      return selectedIndex;
+    },
   };
   dropdowns.push(api);
   return api;
@@ -207,6 +211,58 @@ async function init() {
     items: BUTTON_THEMES,
     savedKey: "button",
     saved,
+  });
+
+  // Custom themes saved from the Settings+ page: a dropdown like the
+  // built-in ones, plus a button that deletes the selected theme
+  setupCustomThemesDropdown(saved);
+}
+
+// Populates the Custom Themes dropdown. Hidden when nothing is saved.
+async function setupCustomThemesDropdown(saved) {
+  const section = document.getElementById("customThemesSection");
+  if (!section) return;
+
+  const themes = await getCustomThemes();
+  if (themes.length === 0) {
+    section.hidden = true;
+    return;
+  }
+  section.hidden = false;
+
+  const COLOR_KEYS = ["bg", "light", "dark", "button"];
+  const matchesSaved = (theme) =>
+    COLOR_KEYS.every((key) => sameColor(theme[key], saved[key]));
+
+  const dropdown = createDropdown({
+    root: document.getElementById("customThemesDropdown"),
+    items: themes,
+    renderPreview: boardSwatch,
+    onSelect: (theme) => {
+      // Applying a saved theme sets all four colors at once
+      for (const key of COLOR_KEYS) {
+        sendLive(key, effective(key, theme[key]));
+      }
+      saveColors({
+        bg: theme.bg,
+        light: theme.light,
+        dark: theme.dark,
+        button: theme.button,
+      });
+    },
+  });
+
+  // Preselect the theme that matches the current colors, if any
+  const index = themes.findIndex(matchesSaved);
+  dropdown.select(index >= 0 ? index : 0);
+
+  // Deletes the currently selected theme and rebuilds the page
+  const deleteBtn = document.getElementById("deleteCustomTheme");
+  deleteBtn.addEventListener("click", async () => {
+    const current = themes[dropdown.getSelectedIndex()];
+    if (!current) return;
+    await removeCustomTheme(current.id);
+    location.reload();
   });
 }
 

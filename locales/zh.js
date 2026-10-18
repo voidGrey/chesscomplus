@@ -28,6 +28,9 @@
     "popup.resetLightSquares": "重置浅色格颜色",
     "popup.resetDarkSquares": "重置深色格颜色",
     "popup.resetButtonColor": "重置按钮颜色",
+    "popup.saveTheme": "保存主题",
+    "popup.themeNamePlaceholder": "主题名称...",
+    "popup.themeExists": '已存在使用相同配色的主题："{name}"',
 
     // Themes
     "themes.subtitle": "现成的棋盘与背景配色",
@@ -35,6 +38,7 @@
     "themes.siteBackground": "Site background",
     "themes.buttonColor": "Button color",
     "themes.custom": "自定义",
+    "themes.customThemes": "自定义主题",
     "themes.board.default": "默认",
     "themes.board.darkBlue": "深蓝 +",
     "themes.board.wood": "木质",
@@ -55,7 +59,7 @@
 
     // Extra Settings
     "extra.subtitle": "隐私与直播设置",
-    "extra.tabHiding": "隐私",
+    "extra.tabHiding": "隐藏",
     "extra.tabMasking": "伪装",
     "extra.subtabsAria": "更多设置",
     "extra.opponent": "对手",
@@ -77,5 +81,4 @@
     "extra.selfAvatarLabel": "你的直播头像",
     "extra.selfAvatarHint": "主播模式开启时，代替你的头像显示。留空则使用对手的头像设置。",
     "extra.selfAvatarPlaceholder": "https://example.com/my-avatar.png",
-    "extra.self": "自己"
 };

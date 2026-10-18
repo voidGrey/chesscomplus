@@ -6,6 +6,7 @@
   <title>Chess.com+</title>
   <link rel="stylesheet" href="popup.css">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
   <main>
@@ -39,6 +40,22 @@
           <svg class="dropdown-chevron lucide lucide-chevron-down" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </button>
         <ul class="dropdown-list" role="listbox" aria-labelledby="backgroundLabel" hidden></ul>
+      </div>
+    </section>
+
+    <section class="field" id="customThemesSection" hidden>
+      <h2 class="field-label" id="customThemesLabel" data-i18n="themes.customThemes">Custom Themes</h2>
+      <div class="custom-themes-row">
+        <div class="dropdown" id="customThemesDropdown">
+          <button class="dropdown-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="customThemesLabel customThemesName">
+            <span class="dropdown-preview"></span>
+            <span class="dropdown-name" id="customThemesName"></span>
+            <svg class="dropdown-chevron lucide lucide-chevron-down" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <ul class="dropdown-list" role="listbox" aria-labelledby="customThemesLabel" hidden></ul>
+        </div>
+        <button class="reset is-visible custom-themes-delete" type="button" id="deleteCustomTheme"
+                aria-label="Delete selected theme" title="Delete theme">×</button>
       </div>
     </section>
 

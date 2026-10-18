@@ -28,6 +28,9 @@
     "popup.resetLightSquares": "Reset light square color",
     "popup.resetDarkSquares": "Reset dark square color",
     "popup.resetButtonColor": "Reset button color",
+    "popup.saveTheme": "Save Theme",
+    "popup.themeNamePlaceholder": "Theme name...",
+    "popup.themeExists": 'A theme with these colors already exists: "{name}"',
 
     // Themes
     "themes.subtitle": "Ready-made board and background colors",
@@ -35,6 +38,7 @@
     "themes.siteBackground": "Site background",
     "themes.buttonColor": "Button color",
     "themes.custom": "Custom",
+    "themes.customThemes": "Custom Themes",
     "themes.board.default": "Default",
     "themes.board.darkBlue": "Dark Blue +",
     "themes.board.wood": "Wood",
@@ -55,7 +59,7 @@
 
     // Extra Settings
     "extra.subtitle": "Privacy and streaming settings",
-    "extra.tabHiding": "Privacy",
+    "extra.tabHiding": "Hiding",
     "extra.tabMasking": "Masking",
     "extra.subtabsAria": "Extra settings",
     "extra.opponent": "Opponent",
@@ -77,5 +81,4 @@
     "extra.selfAvatarLabel": "Your stream avatar",
     "extra.selfAvatarHint": "Shown instead of your avatar while Streamer Mode is on. If left empty, the opponent avatar setting is used.",
     "extra.selfAvatarPlaceholder": "https://example.com/my-avatar.png",
-    "extra.self": "Myself"
 };
