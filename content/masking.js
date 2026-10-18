@@ -144,9 +144,16 @@ function unmaskAvatar(img) {
 function applyHiding() {
   const s = hideSettings;
 
-  // Usernames: self is masked in streamer mode, opponent via its own toggle
+  // Usernames: self is masked in streamer mode, opponent via its own toggle.
+  // Two layouts are covered: the standard tagline
+  // ([data-test-element="user-tagline-username"]) and the fullscreen/zen
+  // compact tagline (.user-tagline-compact-username, which has no test id).
+  // Selection is scoped to .player-component so profile pages are untouched.
   document
-    .querySelectorAll('[data-test-element="user-tagline-username"]')
+    .querySelectorAll(
+      '.player-component [data-test-element="user-tagline-username"], ' +
+      ".player-component .user-tagline-compact-username"
+    )
     .forEach((el) => {
       const isSelf = classifySide(el) === "self";
       const mask = isSelf ? s.streamer : s.hideOppName;
@@ -209,6 +216,14 @@ function applyHiding() {
       const deltaEl = card.querySelector(".game-over-stat-card-delta");
       if (deltaEl) setHidden(deltaEl, hideSelfRating);
     });
+
+  // League/trophy card in the dual-stat game-over modal (reveals league rank
+  // and trophies). Hidden under streamer mode like the tagline league badge.
+  document.querySelectorAll(".game-over-stat-card-component").forEach((card) => {
+    if (card.querySelector(".game-over-stats-leagueIcon")) {
+      setHidden(card, s.streamer);
+    }
+  });
 
   // League badge (legacy layout)
   document.querySelectorAll(".league-score-component").forEach((el) => {
